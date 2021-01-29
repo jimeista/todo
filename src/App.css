@@ -1,12 +1,29 @@
 .App {
   text-align: center;
 }
-
+body {
+  background: #282c34;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  opacity: 0;
+}
+::-webkit-scrollbar-corner {
+  opacity: 0;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -27,7 +44,16 @@
 .App-link {
   color: #61dafb;
 }
+.bodyTest {
+  /*  background-image: url(/static/media/bg-pattern.8cfe4242.svg), radial-gradient(farthest-side ellipse at 10% 0, #414e60 20%, #94a3b1);*/
 
+  letter-spacing: 0.5px;
+
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+
+  color: #ffffff;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
