@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { store } from './store'
 
-import Header from './components/Header'
-import './Main.css'
+import './App.css'
 import 'antd/dist/antd.css'
 
 function App() {
@@ -17,18 +16,7 @@ function App() {
     console.log(data)
   }, [data])
 
-  return (
-    <div className='ChildSection_main'>
-      <div className='ChildSection_wrapper'>
-        <div className='ChildSection_title_wrap'>
-          <span className='ChildSection_title'>Кружки и секции</span>
-        </div>
-        <div className='ChildSection_block'>
-          <div className='ChildSection_RoundCHartBlock_wrap'>{doughnutco}</div>
-        </div>
-      </div>
-    </div>
-  )
+  return <div>Redux</div>
 }
 
 export default App
