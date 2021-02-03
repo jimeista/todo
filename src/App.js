@@ -1,22 +1,14 @@
-import { useEffect, useState } from 'react'
-import { store } from './store'
+import { Todo } from './components/Todo'
 
 import './App.css'
 import 'antd/dist/antd.css'
 
 function App() {
-  const [data, setData] = useState(store.initialState)
-
-  useEffect(() => {
-    store.subscribe(setData)
-    store.init(url_)
-  }, [])
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
-  return <div>Redux</div>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+      <Todo />
+    </div>
+  )
 }
 
 export default App
