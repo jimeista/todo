@@ -1,27 +1,26 @@
 import React from 'react'
 import { Checkbox, Select, Button, Space } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
 
 const { Option } = Select
 
-const List = ({ todos, setTodos }) => {
+const List = () => {
+  const state = useSelector((state) => state.todoReducer)
+  const dispatch = useDispatch()
+
   const onDelete = (name) => {
-    setTodos((state) => state.filter((todo) => todo.name !== name))
+    dispatch({ type: 'TODO/DELETE', payload: name })
   }
 
   const onChangeChecked = (index) => {
-    setTodos((state) =>
-      state.map((todo, key) =>
-        key === index ? { ...todo, checked: !todo.checked } : todo
-      )
-    )
+    dispatch({ type: 'TODO/CHECKED', payload: index })
   }
 
   const onChangeColor = (color, index) => {
-    setTodos((state) =>
-      state.map((todo, key) => (key === index ? { ...todo, color } : todo))
-    )
+    dispatch({ type: 'TODO/COLOR', payload: { key: index, color } })
   }
 
+  console.log(state)
   return (
     <div
       style={{
@@ -33,7 +32,7 @@ const List = ({ todos, setTodos }) => {
     >
       <h3 style={{ marginLeft: 0 }}>My List</h3>
       <hr />
-      {todos.map((todo, index) => (
+      {state.map((todo, index) => (
         <div
           style={{
             display: 'flex',

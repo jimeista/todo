@@ -1,26 +1,40 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 
 const type = {
   ADD: 'TODO/ADD',
   DELETE: 'TODO/DELETE',
   FILTER: 'TODO/FILTER',
+  CHECKED: 'TODO/CHECKED',
+  COLOR: 'TODO/COLOR',
 }
 
-const initialState = []
+const initialState = [
+  { name: 'run', checked: false, completed: false, color: 'red' },
+  { name: 'read', checked: false, completed: false, color: '' },
+  { name: 'sleep', checked: false, completed: false, color: '' },
+]
 
-const reducer = (state = initialState, action) => {
+const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case type.ADD:
       return [...state, action.payload]
     case type.DELETE:
-      return state.filter((s) => s !== action.payload)
+      return state.filter((todo) => todo.name !== action.payload)
     case type.FILTER:
-      return state.filter((s) => s === action.payload)
+      return state.filter((todo) => todo.name === action.payload)
+    case type.CHECKED:
+      return state.map((todo, key) =>
+        key === action.payload ? { ...todo, checked: !todo.checked } : todo
+      )
+    case type.COLOR:
+      return state.map((todo, key) =>
+        key === action.payload.key
+          ? { ...todo, color: action.payload.color }
+          : todo
+      )
     default:
       return state
   }
 }
 
-const store = createStore(reducer)
-
-export default store
+export const store = createStore(combineReducers({ todoReducer }))

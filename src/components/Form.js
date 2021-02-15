@@ -1,22 +1,29 @@
 import React from 'react'
-
+import { useDispatch } from 'react-redux'
 import { Form, Input, Button } from 'antd'
 
-const TodoForm = ({ setTodos }) => {
+const TodoForm = () => {
   const [form] = Form.useForm()
 
+  const dispatch = useDispatch()
+
   const onSubmit = async () => {
-    const todo = await form.validateFields()
-    setTodos((state) => [
-      ...state,
-      {
-        name: todo.name,
-        checked: false,
-        completed: false,
-        color: '',
-      },
-    ])
-    form.resetFields()
+    try {
+      const todo = await form.validateFields()
+
+      dispatch({
+        type: 'TODO/ADD',
+        payload: {
+          name: todo.name,
+          checked: false,
+          completed: false,
+          color: '',
+        },
+      })
+      form.resetFields()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
