@@ -13,6 +13,7 @@ export const Todo = () => {
         border: '1px solid black',
         margin: 20,
         maxHeight: '60vh',
+        margin: 'auto',
       }}
     >
       <h1>Rxjs Todos</h1>

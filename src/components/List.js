@@ -10,12 +10,9 @@ const { Option } = Select
 const List = () => {
   const [state, setState] = useState(store.initialState)
 
-  console.log(state)
-
   useLayoutEffect(() => {
-    store.fetch()
-    store.subscribe(setState)
     store.init()
+    store.subscribe(setState)
   }, [])
 
   const onDelete = (name) => {
