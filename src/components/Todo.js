@@ -12,6 +12,7 @@ export const Todo = () => {
         width: '50%',
         border: '1px solid black',
         margin: 20,
+        maxHeight: '60vh',
       }}
     >
       <h1>Todos</h1>

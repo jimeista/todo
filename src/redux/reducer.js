@@ -42,7 +42,8 @@ export const todoReducer = (state = initialState, action) => {
     case type.FETCH:
       return { ...state, status: action.payload }
     case type.FETCH_FULLFILLED:
-      let data = action.payload.data.slice(0, 10)
+      // let data = action.payload.data.slice(0, 10)
+      let data = action.payload.data
       return {
         status: action.payload.status,
         data: [
