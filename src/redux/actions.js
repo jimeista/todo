@@ -1,4 +1,19 @@
 import { type } from './types'
+
+export const fetchStream = (payload) => {
+  return {
+    type: type.FETCH,
+    payload: payload,
+  }
+}
+
+export const fetchStreamFullfilled = (payload) => {
+  return {
+    type: type.FETCH_FULLFILLED,
+    payload: payload,
+  }
+}
+
 export const addTodo = (payload) => {
   return {
     type: type.ADD,

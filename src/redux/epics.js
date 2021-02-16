@@ -3,42 +3,20 @@ import { forkJoin, of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
 import { catchError, map, mapTo, mergeMap } from 'rxjs/operators'
 
-import {} from './actions'
-import {} from './types'
+import { fetchStream, fetchStreamFullfilled } from './actions'
+import { type } from './types'
 
-export const fetchIllnessEpic = (action$) =>
+// let url = '/sc-air-pollution/api/averages?start=2021-02-09T23:00:00Z'
+let url = 'https://jsonplaceholder.typicode.com/posts'
+
+export const fetchStreamEpic = (action$) =>
   action$.pipe(
-    // ofType(LOGIN),
+    ofType(type.FETCH),
     mergeMap((action) =>
-      forkJoin(
-        ajax({
-          //   url: LOGIN_URL,
-          headers: {
-            Authorization: `Basic ${action.payload.hash}`,
-            'Content-Type': 'application/json',
-          },
-          crossDomain: true,
-          withCredentials: false,
-          method: 'GET',
-          body: JSON.stringify({}),
+      ajax.getJSON(url).pipe(
+        map((res) => {
+          return fetchStreamFullfilled(res)
         })
-      ).pipe(
-        mergeMap((response) =>
-          of()
-          // setUserData({
-          //   payload: response[0].response,
-          //   userHash: action.payload.hash,
-          // }),
-          // setRolesData(response[1].response)
-        ),
-        catchError((error) =>
-          of({
-            // type: FETCH_ILLNESS_DATA_ERROR,
-            //   payload: error.xhr.response,
-            payload: error.xhr.status,
-            error: true,
-          })
-        )
       )
     )
   )

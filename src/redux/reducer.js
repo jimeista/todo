@@ -24,6 +24,21 @@ export const todoReducer = (state = initialState, action) => {
           ? { ...todo, color: action.payload.color }
           : todo
       )
+    case type.FETCH_FULLFILLED:
+      console.log(action.payload)
+      let data = action.payload.slice(0, 10)
+      return [
+        ...state,
+        ...data.map((i) => ({
+          name: i.title,
+          checked: false,
+          completed: false,
+          color: '',
+        })),
+      ]
+
+    case type.FETCH_ERROR:
+      return []
     default:
       return state
   }

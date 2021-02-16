@@ -24,7 +24,6 @@ const List = () => {
     dispatch({ type: type.COLOR, payload: { key: index, color } })
   }
 
-  console.log(state)
   return (
     <div
       style={{
