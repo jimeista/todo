@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, message } from 'antd'
 
 const TodoForm = () => {
   const [form] = Form.useForm()
@@ -11,16 +11,21 @@ const TodoForm = () => {
     try {
       const todo = await form.validateFields()
 
-      dispatch({
-        type: 'TODO/ADD',
-        payload: {
-          name: todo.name,
-          checked: false,
-          completed: false,
-          color: '',
-        },
-      })
-      form.resetFields()
+      if (todo.name) {
+        message.success('Success')
+        dispatch({
+          type: 'TODO/ADD',
+          payload: {
+            name: todo.name,
+            checked: false,
+            completed: false,
+            color: '',
+          },
+        })
+        form.resetFields()
+      } else {
+        message.info('Need to fill todo!')
+      }
     } catch (err) {
       console.log(err)
     }

@@ -1,0 +1,7 @@
+export const type = {
+  ADD: 'TODO/ADD',
+  DELETE: 'TODO/DELETE',
+  FILTER: 'TODO/FILTER',
+  CHECKED: 'TODO/CHECKED',
+  COLOR: 'TODO/COLOR',
+}

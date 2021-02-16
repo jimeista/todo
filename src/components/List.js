@@ -1,6 +1,8 @@
 import React from 'react'
-import { Checkbox, Select, Button, Space } from 'antd'
+import { Checkbox, Select, Button, Space, message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { type } from '../redux/types'
 
 const { Option } = Select
 
@@ -9,15 +11,17 @@ const List = () => {
   const dispatch = useDispatch()
 
   const onDelete = (name) => {
-    dispatch({ type: 'TODO/DELETE', payload: name })
+    message.success(`Todo: ${name} successfully deleted`)
+    dispatch({ type: type.DELETE, payload: name })
   }
 
   const onChangeChecked = (index) => {
-    dispatch({ type: 'TODO/CHECKED', payload: index })
+    message.success(`Todo successfully changed`)
+    dispatch({ type: type.CHECKED, payload: index })
   }
 
   const onChangeColor = (color, index) => {
-    dispatch({ type: 'TODO/COLOR', payload: { key: index, color } })
+    dispatch({ type: type.COLOR, payload: { key: index, color } })
   }
 
   console.log(state)

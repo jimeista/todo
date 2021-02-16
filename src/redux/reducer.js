@@ -1,12 +1,4 @@
-import { createStore, combineReducers } from 'redux'
-
-const type = {
-  ADD: 'TODO/ADD',
-  DELETE: 'TODO/DELETE',
-  FILTER: 'TODO/FILTER',
-  CHECKED: 'TODO/CHECKED',
-  COLOR: 'TODO/COLOR',
-}
+import { type } from './types'
 
 const initialState = [
   { name: 'run', checked: false, completed: false, color: 'red' },
@@ -14,7 +6,7 @@ const initialState = [
   { name: 'sleep', checked: false, completed: false, color: '' },
 ]
 
-const todoReducer = (state = initialState, action) => {
+export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case type.ADD:
       return [...state, action.payload]
@@ -36,5 +28,3 @@ const todoReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export const store = createStore(combineReducers({ todoReducer }))
