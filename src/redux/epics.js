@@ -15,7 +15,7 @@ export const fetchStreamEpic = (action$) =>
     mergeMap((action) =>
       ajax.getJSON(url).pipe(
         map((res) => {
-          return fetchStreamFullfilled(res)
+          return fetchStreamFullfilled({ status: 'success', data: res })
         })
       )
     )

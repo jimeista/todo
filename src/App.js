@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch({ type: type.FETCH, payload: { status: 'is fetching' } })
+    dispatch({ type: type.FETCH, payload: 'loading' })
   }, [dispatch])
 
   return (

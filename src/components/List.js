@@ -35,7 +35,7 @@ const List = () => {
     >
       <h3 style={{ marginLeft: 0 }}>My List</h3>
       <hr />
-      {state.map((todo, index) => (
+      {state.data.map((todo, index) => (
         <div
           style={{
             display: 'flex',
