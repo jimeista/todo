@@ -1,6 +1,24 @@
 onmessage = function (e) {
-  const num = e.data
-  postMessage(fib(num))
+  console.log(e.data)
+  postMessage('hello')
 }
 
-const fib = (n) => (n < 2 ? 1 : fib(n - 1) + fib(n - 2))
+// const subject = new BehaviorSubject()
+// let url = '/sc-air-pollution/api/averages?start=2021-02-09T23:00:00Z'
+
+// onmessage = function (e) {
+//   store.init()
+//   store.fetch()
+
+//   subject.subscribe((o) => postMessage(o))
+// }
+
+// const initialState = []
+
+// const store = {
+//   initialState,
+//   init: () => subject.next(initialState),
+//   fetch: () => {
+//     oboe(url).done((o) => subject.next(o))
+//   },
+// }
