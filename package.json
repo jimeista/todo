@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "ajax": "^0.0.4",
     "antd": "^4.11.2",
+    "axios": "^0.21.1",
     "bizcharts": "^4.1.6",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",

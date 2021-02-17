@@ -1,24 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button, InputNumber } from 'antd'
+
+import { useFibonacci } from './hooks/useFibonacci'
 
 import './App.css'
 import 'antd/dist/antd.css'
 
-const worker = new Worker('worker.js')
+let url = 'https://jsonplaceholder.typicode.com/comments'
 
 function App() {
-  const [data, setData] = useState(0)
+  const [num, setNum] = useState(0)
 
-  useEffect(() => {
-    worker.postMessage('hi there')
-    worker.onmessage = function (e) {
-      if (e && e.data) {
-        console.log(e.data)
-      }
-    }
-  }, [])
+  const { result, run } = useFibonacci()
 
-  return <div style={{ width: '100%' }}></div>
+  const onSubmit = () => {
+    run(num)
+  }
+
+  return (
+    <div style={{ width: '100%' }}>
+      <InputNumber min={0} max={100} onChange={(val) => setNum(val)} />
+      <Button onClick={onSubmit}>calculate</Button>
+
+      <p>{result}</p>
+    </div>
+  )
 }
 
 export default App
