@@ -8,7 +8,7 @@ subject.next([])
 export const store = {
   init: () => {
     let url =
-      'https://sc.smartalmaty.kz/sc-air-pollution/api/averages?start=2021-02-09T23:00:00Z'
+      'https://sc.smartalmaty.kz/sc-air-pollution/api/averages?start=2021-01-09T23:00:00Z'
     oboe(url).done((o) => {
       let data = subject.getValue()
       subject.next([...data, o])

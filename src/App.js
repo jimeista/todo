@@ -1,28 +1,33 @@
-import { useLayoutEffect, useState } from 'react'
-import { store } from './oboe'
-
-import { Todo } from './components/Todo'
+import { useState, useEffect } from 'react'
+import { Button, InputNumber } from 'antd'
 
 import './App.css'
 import 'antd/dist/antd.css'
 
-function App() {
-  const [state, setState] = useState([])
+const worker = new Worker('worker.js')
 
-  useLayoutEffect(() => {
-    store.init()
-    store.subscribe(setState)
+function App() {
+  const [num, setNum] = useState(0)
+  const [fib, setFib] = useState(0)
+
+  useEffect(() => {
+    worker.onmessage = function (e) {
+      if (e && e.data) {
+        setFib(e.data)
+      }
+    }
   }, [])
 
-  console.log(state)
+  const onSubmit = () => {
+    worker.postMessage(num)
+  }
+
+  console.log(fib)
+
   return (
     <div style={{ width: '100%' }}>
-      <Todo />
-      <div style={{ width: '60%', margin: 'auto', marginTop: 20 }}>
-        {state.map((i) => (
-          <>{`code: ${i.code},date: ${i.date}`}</>
-        ))}
-      </div>
+      <InputNumber min={0} max={100} onChange={(val) => setNum(val)} />
+      <Button onClick={onSubmit}> click me</Button>
     </div>
   )
 }
